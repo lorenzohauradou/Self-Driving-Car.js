@@ -93,7 +93,7 @@ class Level{
                 level.outputs[i]=1;
             }else{
                 level.outputs[i]=0;
-            } 
+            }
         }
 
         return level.outputs;

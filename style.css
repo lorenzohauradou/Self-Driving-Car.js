@@ -11,6 +11,10 @@ body{
     margin-top: 20px;
     font-weight: bold;
 }
+#lastCar{
+    margin-bottom: 20px;
+    font-weight: bold;
+}
 
 #verticalButtons{
     display:flex;

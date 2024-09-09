@@ -8,11 +8,19 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road=new Road(carCanvas.width/2,carCanvas.width*0.9);
 
-const N=100;
+let N = parseInt(localStorage.getItem("carCount")) || 100;
 
 const cars=generateCars(N);
 let bestCar=cars[0];
-if(localStorage.getItem("bestBrain")){
+if(localStorage.getItem("keepBestBrain")) {
+    const bestBrain = JSON.parse(localStorage.getItem("keepBestBrain"));
+    cars.forEach((car, i) => {
+        car.brain = JSON.parse(JSON.stringify(bestBrain));
+        if (i !== 0) {
+            NeuralNetwork.mutate(car.brain, 0.1);
+        }
+    });
+} else if (localStorage.getItem("bestBrain")) {
     for(let i=0;i<cars.length;i++){
         cars[i].brain=JSON.parse(
             localStorage.getItem("bestBrain"));
@@ -36,7 +44,9 @@ const traffic=[
 
 animate();
 
-function refresh(){
+function refresh() {
+    localStorage.removeItem("carCount");
+    localStorage.removeItem("keepBestBrain");
     window.location.reload();
 }
 
@@ -47,6 +57,12 @@ function save(){
 
 function discard(){
     localStorage.removeItem("bestBrain");
+}
+
+function lastCar() {
+    localStorage.setItem("carCount", "1");
+    localStorage.setItem("keepBestBrain", JSON.stringify(bestCar.brain));
+    window.location.reload();
 }
 
 function generateCars(N){
@@ -92,3 +108,9 @@ function animate(time){
     Visualizer.drawNetwork(networkCtx,bestCar.brain);
     requestAnimationFrame(animate);
 }
+
+function updateCarCounter() {
+    document.title = `Self-driving car - ${N} cars`;
+}
+
+updateCarCounter();
