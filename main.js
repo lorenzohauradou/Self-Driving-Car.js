@@ -1,5 +1,5 @@
 const carCanvas=document.getElementById("carCanvas");
-carCanvas.width=200;
+carCanvas.width=400;
 const networkCanvas=document.getElementById("networkCanvas");
 networkCanvas.width=300;
 
@@ -8,7 +8,7 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road=new Road(carCanvas.width/2,carCanvas.width*0.9);
 
-const N=170;
+const N=100;
 
 const cars=generateCars(N);
 let bestCar=cars[0];
@@ -23,15 +23,15 @@ if(localStorage.getItem("bestBrain")){
 }
 
 const traffic=[
-    new Car(road.getLaneCenter(1),-100,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(0),-300,30,50,"DUMMY",2,getRandomColor()),
+
     new Car(road.getLaneCenter(2),-300,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(0),-500,30,50,"DUMMY",2,getRandomColor()),
+    new Car(road.getLaneCenter(1),-150,30,50,"DUMMY",2,getRandomColor()),
+    new Car(road.getLaneCenter(0),-200,30,50,"DUMMY",2,getRandomColor()),
     new Car(road.getLaneCenter(1),-500,30,50,"DUMMY",2,getRandomColor()),
     new Car(road.getLaneCenter(1),-800,30,50,"DUMMY",2,getRandomColor()),
     new Car(road.getLaneCenter(2),-700,30,50,"DUMMY",2,getRandomColor()),
+    new Car(road.getLaneCenter(0),-700,30,50,"DUMMY",2,getRandomColor()),
     new Car(road.getLaneCenter(1),-1000,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(0),-100,30,50,"DUMMY",2,getRandomColor()),
 ];
 
 animate();
