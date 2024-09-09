@@ -7,6 +7,11 @@ body{
     align-items:center;
 }
 
+#refresh{
+    margin-top: 20px;
+    font-weight: bold;
+}
+
 #verticalButtons{
     display:flex;
     flex-direction:column;
